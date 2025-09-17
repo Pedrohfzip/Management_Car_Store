@@ -1,14 +1,14 @@
 {
   "development": {
-    "username": "root",
+    "username": "postgres",
     "password": "2442",
     "database": "esobase",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "2442",
     "database": "esobase_test",
     "host": "127.0.0.1",
     "dialect": "postgres"

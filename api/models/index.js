@@ -7,7 +7,6 @@ const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
@@ -15,6 +14,9 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
+
+const db = {};
+
 
 fs
   .readdirSync(__dirname)
@@ -30,6 +32,12 @@ fs
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
+
+// Garante que db.User está disponível
+if (!db.User) {
+  const User = require('./user')(sequelize, Sequelize.DataTypes);
+  db.User = User;
+}
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {

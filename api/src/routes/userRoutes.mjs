@@ -1,9 +1,8 @@
 import { Router } from 'express';
+import { getAllUsers }  from '../controllers/UserController.mjs';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  res.json({ message: 'rotas users funcionando!' });
-});
+router.get('/', getAllUsers);
 
 export default router;

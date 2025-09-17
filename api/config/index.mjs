@@ -6,4 +6,4 @@ const sequelize = new Sequelize('esobase', 'postgres', '2442', {
   logging: false, // Mostra logs SQL no console, pode remover se quiser
 });
 
-export { sequelize };
+export default sequelize;
