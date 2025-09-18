@@ -7,10 +7,10 @@ import bcrypt from 'bcrypt';
 
 const userController = {
   create: async (req, res) => {
-      const { name ,email, password } = req.body;
+      const { name ,email, password, role } = req.body;
+      console.log(req.body);
       const hashedPassword = await bcrypt.hash(password, 10);
-      const newUser = await db.User.create({ name ,email, password: hashedPassword });
-      console.log(newUser);
+      const newUser = await db.User.create({ name ,email, password: hashedPassword, role });
       res.status(201).json(newUser);
   },
   getUsers: async (req, res) => {

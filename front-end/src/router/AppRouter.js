@@ -4,6 +4,7 @@ import Register from '../components/Register';
 import Login from '../components/Login';
 import { PrivateRoute } from './PrivateRoutes';
 import DashBoard from '../pages/DashBoard';
+import CreateUser from '../components/createUser';
 
 function AppRouter() {
   return (
@@ -12,6 +13,7 @@ function AppRouter() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/createUser" element={<CreateUser />} />
         <Route
           path="/dashboard"
           element={

@@ -5,7 +5,8 @@ const initialState = {
   userData: {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    role: ''
   },
   userLogged: {},
 };
