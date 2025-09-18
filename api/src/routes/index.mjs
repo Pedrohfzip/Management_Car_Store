@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import userRoutes from './userRoutes.mjs';
-import postRoutes from './postRoutes.mjs';
+import loginRoutes from './loginRouter.mjs';
 
 const router = Router();
 
 router.use('/users', userRoutes);
-router.use('/posts', postRoutes);
+router.use('/login', loginRoutes);
+
 
 export default router;

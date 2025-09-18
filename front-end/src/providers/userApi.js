@@ -1,12 +1,12 @@
 import api from './apiInstance';
 
 function getUsers() {
-  return api.get('/users').then(res => res.data);
+  return api.get('/users/').then(res => res.data);
 }
 
-
 function createUser(userData) {
-  return api.post('/users', userData).then(res => res.data);
+  console.log(userData);
+  return api.post('/users/register', userData).then(res => res.data);
 }
 
 export { getUsers, createUser };

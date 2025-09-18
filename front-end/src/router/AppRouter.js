@@ -1,10 +1,26 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import HomeRouter from './HomeRouter';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from '../pages/Home';
+import Register from '../components/Register';
+import Login from '../components/Login';
+import { PrivateRoute } from './PrivateRoutes';
+import DashBoard from '../pages/DashBoard';
 
 function AppRouter() {
   return (
     <Router>
-      <HomeRouter />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <DashBoard />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
     </Router>
   );
 }

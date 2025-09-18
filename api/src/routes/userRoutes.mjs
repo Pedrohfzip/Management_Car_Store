@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { getAllUsers }  from '../controllers/UserController.mjs';
+import { userController }  from '../controllers/UserController.mjs';
+import { authenticateToken } from '../middlewares/authMiddleware.mjs';
 
 const router = Router();
 
-router.get('/', getAllUsers);
+router.post('/register', userController.create);
+router.get('/', authenticateToken, userController.getUsers);
 
 export default router;

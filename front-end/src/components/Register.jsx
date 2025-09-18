@@ -1,15 +1,22 @@
-import { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createUser } from '../providers/userApi';
+
 import { setUserData } from '../store/userSlice';
 function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setUserData({ name, email, password });
+  const handleSubmit = async (e) => {
+    await createUser(user.userData)
+      .then(() => {
+        dispatch(setUserData({ name: '', email: '', password: '' }));
+      })
+      .catch((error) => {
+        console.error('Error creating user:', error);
+      });
     navigate('/login');
   };
 
@@ -51,8 +58,8 @@ function Register() {
             <input
               type="text"
               placeholder="Nome completo"
-              value={name}
-              onChange={e => setName(e.target.value)}
+              defaultValue={user.userData.name}
+              onChange={e => dispatch(setUserData({ ...user.userData, name: e.target.value }))}
               required
               style={{
                 width: '100%',
@@ -71,8 +78,8 @@ function Register() {
             <input
               type="email"
               placeholder="Email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              defaultValue={user.userData.email}
+              onChange={e => dispatch(setUserData({ ...user.userData, email: e.target.value }))}
               required
               style={{
                 width: '100%',
@@ -91,8 +98,8 @@ function Register() {
             <input
               type="password"
               placeholder="Senha"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
+              defaultValue={user.userData.password}
+              onChange={e => dispatch(setUserData({ ...user.userData, password: e.target.value }))}
               required
               style={{
                 width: '100%',

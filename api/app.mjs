@@ -8,8 +8,6 @@ const PORT = 8080;
 
 app.use(cors());
 app.use(express.json());
-
-// Usando o router principal
 app.use('/', router);
 
 app.listen(PORT, async () => {

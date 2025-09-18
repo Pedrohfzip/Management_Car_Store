@@ -1,14 +1,29 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createUser } from '../providers/userApi';
+import { login } from '../providers/loginProvider';
+import { useDispatch ,useSelector } from 'react-redux';
+import { setUserDataLogged } from '../store/userSlice';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    
+    e.preventDefault()
+    login({ email, password })
+      .then(data => {
+        console.log('Login successful:', data.user);
+        console.log(user.userLogged);
+        dispatch(setUserDataLogged(data.user));
+        navigate('/');
+      })
+      .catch(error => {
+        console.error('Login failed:', error);
+        // Tratar erro de login
+      });
   };
 
   const handleRegisterClick = () => {

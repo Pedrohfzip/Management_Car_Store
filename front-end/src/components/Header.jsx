@@ -1,8 +1,20 @@
 
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setUserDataLogged } from '../store/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
 	const navigate = useNavigate();
+		const user = useSelector((state) => state.user.userLogged);
+		const dispatch = useDispatch();
+
+		const handleLogout = () => {
+			localStorage.removeItem('token');
+			localStorage.removeItem('user');
+			dispatch(setUserDataLogged({}));
+			navigate('/login');
+		};
 
 	return (
 		<header
@@ -21,59 +33,86 @@ function Header() {
 				zIndex: 1000,
 			}}
 		>
-			{/* Logo à esquerda */}
-			<div
-				style={{
-					color: '#fff',
-					fontWeight: 'bold',
-					fontSize: 24,
-					letterSpacing: 1,
-					cursor: 'pointer',
-				}}
-				onClick={() => navigate('/')}
-			>
-				FleetManager
-			</div>
+		{/* Logo à esquerda */}
+		<div
+			style={{
+				color: '#fff',
+				fontWeight: 'bold',
+				fontSize: 24,
+				letterSpacing: 1,
+				cursor: 'pointer',
+			}}
+			onClick={() => navigate('/')}
+		>
+			FleetManager
+		</div>
 
-			{/* Botões à direita */}
-			<div>
-				<button
-					onClick={() => navigate('/login')}
-					style={{
-						marginRight: 16,
-						padding: '8px 20px',
-						borderRadius: 8,
-						border: 'none',
-						background: '#fff',
-						color: '#2575fc',
-						fontWeight: 'bold',
-						fontSize: 15,
-						cursor: 'pointer',
-						boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
-						transition: 'background 0.2s',
-					}}
-				>
-					Login
-				</button>
-				<button
-					onClick={() => navigate('/register')}
-					style={{
-						padding: '8px 20px',
-						borderRadius: 8,
-						border: 'none',
-						background: '#2575fc',
-						color: '#fff',
-						fontWeight: 'bold',
-						fontSize: 15,
-						cursor: 'pointer',
-						boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
-						transition: 'background 0.2s',
-					}}
-				>
-					Registrar
-				</button>
-			</div>
-		</header>
+				{/* Botões à direita ou nome do usuário */}
+				<div>
+							{user && user.name ? (
+								<>
+									<span style={{ color: '#fff', fontWeight: 'bold', fontSize: 16, marginRight: 16 }}>
+										{user.name}
+									</span>
+									<button
+										onClick={handleLogout}
+										style={{
+											padding: '8px 20px',
+											borderRadius: 8,
+											border: 'none',
+											background: '#ff5e62',
+											color: '#fff',
+											fontWeight: 'bold',
+											fontSize: 15,
+											cursor: 'pointer',
+											boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+											transition: 'background 0.2s',
+										}}
+									>
+										Sair
+									</button>
+								</>
+							) : (
+								<>
+									<button
+										onClick={() => navigate('/login')}
+										style={{
+											marginRight: 16,
+											padding: '8px 20px',
+											borderRadius: 8,
+											border: 'none',
+											background: '#fff',
+											color: '#2575fc',
+											fontWeight: 'bold',
+											fontSize: 15,
+											cursor: 'pointer',
+											boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+											transition: 'background 0.2s',
+										}}
+									>
+										Login
+									</button>
+									<button
+										onClick={() => navigate('/register')}
+										style={{
+											padding: '8px 20px',
+											borderRadius: 8,
+											border: 'none',
+											background: '#2575fc',
+											color: '#fff',
+											fontWeight: 'bold',
+											fontSize: 15,
+											cursor: 'pointer',
+											boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+											transition: 'background 0.2s',
+										}}
+									>
+										Registrar
+									</button>
+								</>
+							)}
+				</div>
+	</header>
 	);
 }
 
