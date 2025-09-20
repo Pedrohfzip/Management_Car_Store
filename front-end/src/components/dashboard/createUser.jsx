@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createUser } from '../providers/userApi';
+import { createUser } from '../../providers/userApi';
 
-import { setUserData } from '../store/userSlice';
+import { setUserData } from '../../store/userSlice';
 function CreateUser() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -28,7 +28,6 @@ function CreateUser() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      background: 'linear-gradient(135deg, #ff9966 0%, #ff5e62 100%)',
     }}>
       <div 
         style={{

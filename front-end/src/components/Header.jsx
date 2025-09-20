@@ -24,79 +24,23 @@ function Header() {
 					left: 0,
 					width: '100%',
 					height: 64,
-					background: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)',
+					background: 'transparent',
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'space-between',
-					padding: '0 2rem',
-					boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+					padding: '3rem 2rem',
+					boxShadow: '0 2px 8px rgba(215, 215, 215, 0.05)',
 					zIndex: 1000,
 				}}
 			>
-
-					{/* Logo à esquerda */}
-					<div
-						style={{
-							color: '#fff',
-							fontWeight: 'bold',
-							fontSize: 24,
-							letterSpacing: 1,
-							cursor: 'pointer',
-						}}
-						onClick={() => navigate('/')}
-					>
-						FleetManager
+					<div >
+						<img
+							src={process.env.PUBLIC_URL + '/logo.png'}
+							alt="AutoCarStore"
+							style={{ cursor: 'pointer', width: 140 }}
+							onClick={() => navigate('/')}
+						/>
 					</div>
-
-					{/* Botões de navegação centralizados */}
-					<div style={{ display: 'flex', gap: 24 }}>
-						<button
-							onClick={() => navigate('/catalogo')}
-							style={{
-								background: 'none',
-								border: 'none',
-								color: '#fff',
-								fontWeight: 500,
-								fontSize: 16,
-								cursor: 'pointer',
-								padding: '8px 10px',
-								transition: 'color 0.2s',
-							}}
-						>
-							Catálogo
-						</button>
-						<button
-							onClick={() => navigate('/empresa')}
-							style={{
-								background: 'none',
-								border: 'none',
-								color: '#fff',
-								fontWeight: 500,
-								fontSize: 16,
-								cursor: 'pointer',
-								padding: '8px 10px',
-								transition: 'color 0.2s',
-							}}
-						>
-							Empresa
-						</button>
-						<button
-							onClick={() => navigate('/contato')}
-							style={{
-								background: 'none',
-								border: 'none',
-								color: '#fff',
-								fontWeight: 500,
-								fontSize: 16,
-								cursor: 'pointer',
-								padding: '8px 10px',
-								transition: 'color 0.2s',
-							}}
-						>
-							Contato
-						</button>
-					</div>
-
 					{/* Botões à direita ou nome do usuário */}
 					<div>
 						{user && user.name ? (
