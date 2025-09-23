@@ -36,6 +36,11 @@ module.exports = (sequelize, DataTypes) => {
     mileage: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    image_url: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      comment: 'URL da imagem do carro'
     }
   }, {
     tableName: 'Car',

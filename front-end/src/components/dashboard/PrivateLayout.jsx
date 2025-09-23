@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 const sidebarOptions = [
   { label: 'Dashboard', icon: '🏠', path: '/dashboard' },
-  { label: 'Cars', icon: '🚗', path: '/createCars' },
+  { label: 'Cars', icon: '🚗', path: '/createCar' },
   { label: 'Users', icon: '👥', path: '/createUser' },
   { label: 'Sales', icon: '💰', path: '/sales' },
   { label: 'Reports', icon: '📊', path: '/reports' },

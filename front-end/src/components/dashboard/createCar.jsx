@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // Importe a função de criação de carro da sua API, se existir
-// import { createCar } from '../../providers/carApi';
+import { createCar } from '../../providers/carsProvider';
 
 const initialState = {
 	name: '',
@@ -10,37 +10,59 @@ const initialState = {
 	license_plate: '',
 	doors: '',
 	mileage: '',
+	image_url: '',
 };
 
 function CreateCar() {
 	const [form, setForm] = useState(initialState);
 	const [success, setSuccess] = useState(false);
 	const [error, setError] = useState('');
+	const [preview, setPreview] = useState('');
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setForm((prev) => ({ ...prev, [name]: value }));
 	};
 
+	const handleImageChange = (e) => {
+		const file = e.target.files[0];
+		if (file) {
+			const url = URL.createObjectURL(file);
+			setPreview(url);
+			setForm((prev) => ({ ...prev, image_url: url }));
+		}
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setError('');
 		setSuccess(false);
-		// try {
-		//   await createCar(form);
-		//   setSuccess(true);
-		//   setForm(initialState);
-		// } catch (err) {
-		//   setError('Erro ao cadastrar carro.');
-		// }
-		setSuccess(true); // Remova isso quando integrar com a API
-		setForm(initialState);
+		try {
+		  await createCar(form);
+		  setSuccess(true);
+		  setForm(initialState);
+		  setPreview('');
+		} catch (err) {
+		  setError('Erro ao cadastrar carro.');
+		}
 	};
 
 	return (
 		<div style={{ maxWidth: 480, margin: '0 auto', background: '#fff', borderRadius: 16, boxShadow: '0 4px 24px rgba(0,0,0,0.10)', padding: 32 }}>
 			<h2 style={{ textAlign: 'center', color: '#2575fc', marginBottom: 24 }}>Cadastrar Carro</h2>
 			<form onSubmit={handleSubmit}>
+				<div style={{ marginBottom: 18 }}>
+					<label style={{ fontWeight: 500 }}>Imagem do Carro</label>
+					<input
+						type="file"
+						accept="image/*"
+						onChange={handleImageChange}
+						style={{ display: 'block', marginTop: 8 }}
+					/>
+					{preview && (
+						<img src={preview} alt="Preview" style={{ width: '100%', marginTop: 10, borderRadius: 8, objectFit: 'cover', maxHeight: 180 }} />
+					)}
+				</div>
 				<div style={{ marginBottom: 18 }}>
 					<label style={{ fontWeight: 500 }}>Nome</label>
 					<input
