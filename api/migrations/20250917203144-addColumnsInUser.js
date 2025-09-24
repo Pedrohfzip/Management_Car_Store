@@ -16,4 +16,4 @@ module.exports = {
     // Remove a coluna 'role' caso o migration seja revertido
     await queryInterface.removeColumn('users', 'role');
   }
-};
+}; 

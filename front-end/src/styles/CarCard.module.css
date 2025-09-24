@@ -1,0 +1,37 @@
+.card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    margin: 12px;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.cardImage {
+    /* width: 100%; */
+    object-fit: contain;
+    border: 1px solid #ddd;
+    height: 250px;
+    width: 300px;
+    border-radius: 8px;
+    max-width: 300px;
+    margin-bottom: 10px;
+}
+
+.cardTitle {
+    color: #2575fc;
+    margin: 0;
+}
+
+.cardInfo {
+    font-size: 15px;
+    color: #444;
+}
+
+.cardInfo strong {
+    color: #222;
+}

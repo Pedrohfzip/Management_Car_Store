@@ -16,6 +16,26 @@ export default function PrivateLayout() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: '#f4f6fa' }}>
       <aside style={{ width: 220, background: 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)', color: '#fff', display: 'flex', flexDirection: 'column', padding: '32px 0', boxShadow: '2px 0 8px rgba(0,0,0,0.06)' }}>
+        <button
+          onClick={() => navigate('/')}
+          style={{
+            alignSelf: 'flex-start',
+            margin: '0 0 12px 18px',
+            padding: '3px 12px',
+            borderRadius: 6,
+            border: 'none',
+            background: '#fff',
+            color: '#2575fc',
+            fontWeight: 'bold',
+            fontSize: 13,
+            cursor: 'pointer',
+            boxShadow: '0 1px 4px rgba(37,117,252,0.08)',
+            transition: 'background 0.2s',
+            opacity: 0.85
+          }}
+        >
+          ← Home
+        </button>
         <div style={{ fontWeight: 'bold', fontSize: 22, textAlign: 'center', marginBottom: 32, cursor: 'pointer' }} onClick={() => navigate('/dashboard')}>
           FleetManager
         </div>
@@ -31,11 +51,6 @@ export default function PrivateLayout() {
           ))}
         </nav>
       </aside>
-      <main style={{ flex: 1, padding: 0, display: 'flex', flexDirection: 'column' }}>
-        <div style={{ flex: 1, padding: 40 }}>
-          <Outlet />
-        </div>
-      </main>
     </div>
   );
 }

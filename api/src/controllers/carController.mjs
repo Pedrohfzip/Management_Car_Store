@@ -6,8 +6,12 @@ const db = require('../../models/index.js');
 const carController = {
 	create: async (req, res) => {
 		try {
-			const { name, transmission_type, fuel_type, color, license_plate, doors, mileage, image_url } = req.body;
-            console.log(image_url);
+			const { name, transmission_type, fuel_type, color, license_plate, doors, mileage } = req.body;
+			let image_url = null;
+			if (req.file) {
+				// Caminho relativo para servir a imagem
+				image_url = `/uploads/${req.file.filename}`;
+			}
 			const newCar = await db.Car.create({
 				name,
 				transmission_type,
@@ -16,7 +20,7 @@ const carController = {
 				license_plate,
 				doors,
 				mileage,
-                image_url
+				image_url
 			});
 			res.status(201).json(newCar);
 		} catch (error) {

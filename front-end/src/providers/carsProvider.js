@@ -1,7 +1,11 @@
 import api from './apiInstance';
 
 function createCar(carData) {
-  return api.post('/cars', carData).then(res => res.data);
+  return api.post('/cars', carData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  }).then(res => res.data);
 }
 
 function getCars() {
