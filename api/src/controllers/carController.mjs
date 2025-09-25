@@ -28,14 +28,32 @@ const carController = {
 		}
 	},
 
-	getAll: async (req, res) => {
-		try {
-			const cars = await db.Car.findAll();
-			res.status(200).json(cars);
-		} catch (error) {
-			res.status(500).json({ message: 'Erro ao buscar carros', error: error.message });
-		}
-	}
+       getAll: async (req, res) => {
+	       try {
+		       let where = {};
+		       // Filtro de busca por texto
+		       if (req.query.search) {
+			       const { Op } = require('sequelize');
+			       const search = req.query.search.toLowerCase();
+			       where = {
+				       [Op.or]: [
+					       { name: { [Op.iLike]: `%${search}%` } },
+					       { transmission_type: { [Op.iLike]: `%${search}%` } },
+					       { fuel_type: { [Op.iLike]: `%${search}%` } },
+					       { color: { [Op.iLike]: `%${search}%` } },
+					       { license_plate: { [Op.iLike]: `%${search}%` } },
+					       // Para doors e mileage, busca exata se for número
+					       isNaN(Number(search)) ? null : { doors: Number(search) },
+					       isNaN(Number(search)) ? null : { mileage: Number(search) },
+				       ].filter(Boolean)
+			       };
+		       }
+		       const cars = await db.Car.findAll({ where });
+		       res.status(200).json(cars);
+	       } catch (error) {
+		       res.status(500).json({ message: 'Erro ao buscar carros', error: error.message });
+	       }
+       }
 };
 
 export { carController };

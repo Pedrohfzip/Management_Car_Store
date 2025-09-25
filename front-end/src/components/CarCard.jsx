@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/CarCard.module.css';
-
+import { FaWhatsapp } from 'react-icons/fa';
 
 function CarCard({ car }) {
   return (
@@ -8,28 +8,29 @@ function CarCard({ car }) {
       {car.image_url && (
         <img
           className={styles.cardImage}
-          src={car.image_url.startsWith('http') ? car.image_url : `http://localhost:8080${car.image_url}`}
+          src={`http://localhost:8080${car.image_url}`}
           alt={car.name}
         />
       )}
-      <h3 className={styles.cardTitle}>{car.name}</h3>
-      <div className={styles.cardInfo}>
-        <strong>Placa:</strong> {car.license_plate}
+      <div className={styles.cardContent}>
+        <h1 className={styles.cardTitle}>{car.name}</h1>
+        <div className={styles.cardInfo}>
+          <p><strong style={{ marginRight: '4px' }}>Câmbio:</strong> {car.transmission_type}</p>
+        </div>
+        <div className={styles.cardInfo}>
+          <p><strong style={{ marginRight: '4px' }}>KM:</strong> {car.mileage}</p>
+        </div>
       </div>
-      <div className={styles.cardInfo}>
-        <strong>Cor:</strong> {car.color}
-      </div>
-      <div className={styles.cardInfo}>
-        <strong>Câmbio:</strong> {car.transmission_type}
-      </div>
-      <div className={styles.cardInfo}>
-        <strong>Combustível:</strong> {car.fuel_type}
-      </div>
-      <div className={styles.cardInfo}>
-        <strong>Portas:</strong> {car.doors}
-      </div>
-      <div className={styles.cardInfo}>
-        <strong>Quilometragem:</strong> {car.mileage} km
+      <div className={styles.cardFooter}>
+        <button className={styles.moreBtn}>Ver mais</button>
+        <a
+          href={`https://wa.me/55SEUNUMERO?text=Olá, tenho interesse no ${car.name}`}
+          target="_blank"
+          // rel="noopener noreferrer"
+          className={styles.whatsappBtn}
+        >
+          <FaWhatsapp size={18} className='flex' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} />
+        </a>
       </div>
     </div>
   );

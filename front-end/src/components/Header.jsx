@@ -54,7 +54,7 @@ function Header() {
 					<img
 						src={process.env.PUBLIC_URL + '/logo.png'}
 						alt="AutoCarStore"
-						style={{ cursor: 'pointer', width: 140 }}
+						style={{ cursor: 'pointer', width: 100 }}
 						onClick={() => navigate('/')}
 					/>
 				</div>

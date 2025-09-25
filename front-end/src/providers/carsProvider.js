@@ -8,8 +8,8 @@ function createCar(carData) {
   }).then(res => res.data);
 }
 
-function getCars() {
-  return api.get('/cars').then(res => res.data);
+function getCars(data) {
+  return api.get('/cars', { params: data }).then(res => res.data);
 }
 
 export { createCar, getCars };

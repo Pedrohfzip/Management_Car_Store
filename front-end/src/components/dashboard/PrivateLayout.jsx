@@ -15,7 +15,7 @@ export default function PrivateLayout() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: '#f4f6fa' }}>
-      <aside style={{ width: 220, background: 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)', color: '#fff', display: 'flex', flexDirection: 'column', padding: '32px 0', boxShadow: '2px 0 8px rgba(0,0,0,0.06)' }}>
+      <aside style={{ width: 220, color: '#fff', display: 'flex', background: '#23272F', flexDirection: 'column', padding: '32px 0', boxShadow: '2px 0 8px rgba(0,0,0,0.06)' }}>
         <button
           onClick={() => navigate('/')}
           style={{
@@ -51,6 +51,9 @@ export default function PrivateLayout() {
           ))}
         </nav>
       </aside>
+      <main style={{ flex: 1, padding: 0, display: 'flex', flexDirection: 'column' }}>
+        <Outlet />
+      </main>
     </div>
   );
 }
