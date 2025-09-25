@@ -14,12 +14,9 @@ function CarCard({ car }) {
       )}
       <div className={styles.cardContent}>
         <h1 className={styles.cardTitle}>{car.name}</h1>
-        <div className={styles.cardInfo}>
-          <p><strong style={{ marginRight: '4px' }}>Câmbio:</strong> {car.transmission_type}</p>
-        </div>
-        <div className={styles.cardInfo}>
-          <p><strong style={{ marginRight: '4px' }}>KM:</strong> {car.mileage}</p>
-        </div>
+        <hr />
+        <p><strong style={{ marginRight: '4px' }}>Câmbio:</strong> {car.transmission_type}</p>
+        <p><strong style={{ marginRight: '4px' }}>KM:</strong> {car.mileage}</p>
       </div>
       <div className={styles.cardFooter}>
         <button className={styles.moreBtn}>Ver mais</button>

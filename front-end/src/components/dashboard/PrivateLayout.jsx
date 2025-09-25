@@ -51,7 +51,7 @@ export default function PrivateLayout() {
           ))}
         </nav>
       </aside>
-      <main style={{ flex: 1, padding: 0, display: 'flex', flexDirection: 'column' }}>
+      <main style={{ flex: 1, padding: 0, display: 'flex', flexDirection: 'column', background: 'white' }}>
         <Outlet />
       </main>
     </div>
