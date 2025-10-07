@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { createCar } from '../../providers/carsProvider';
-import styles from '../../styles/CreateCar.module.css';
+import { createCar } from '../../../providers/carsProvider';
+import styles from '../../../styles/CreateCar.module.css';
 
 
 const initialState = {

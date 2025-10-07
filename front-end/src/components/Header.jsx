@@ -77,7 +77,9 @@ function Header() {
 								{user && user.name ? (
 									<>
 										<span className={styles.userName}>{user.name}</span>
-										<button onClick={() => navigate('/dashboard')} className={styles.menuItem}>Dashboard</button>
+										{user.role !== 'cliente' && (
+											<button onClick={() => navigate('/dashboard')} className={styles.menuItem}>Dashboard</button>
+										)}
 										<button onClick={handleLogout} className={styles.menuItem}>Sair</button>
 									</>
 								) : (
@@ -94,12 +96,14 @@ function Header() {
 						{user && user.name ? (
 							<>
 								<span className={styles.userName}>{user.name}</span>
-								<button
-									onClick={() => navigate('/dashboard')}
-									className={`${styles.button} ${styles.dashboardBtn}`}
-								>
-									Dashboard
-								</button>
+								{user.role === 'admin' && (
+									<button
+										onClick={() => navigate('/dashboard')}
+										className={`${styles.button} ${styles.dashboardBtn}`}
+									>
+										Dashboard
+									</button>
+								)}
 								<button
 									onClick={handleLogout}
 									className={`${styles.button} ${styles.logoutBtn}`}
